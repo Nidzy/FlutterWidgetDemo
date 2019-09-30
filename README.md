@@ -55,7 +55,17 @@
 
 ![Screenshot_20190930-155137](https://user-images.githubusercontent.com/17490608/65874121-a2f9d580-e3a2-11e9-867e-393888921c13.png)
 
+>Add User to Sqflite Db:
 
+![Screenshot_20190930-192958](https://user-images.githubusercontent.com/17490608/65885944-1575b000-e3b9-11e9-9b14-6b3d252d1005.png)
+
+>Update User:
+
+![Screenshot_20190930-193003](https://user-images.githubusercontent.com/17490608/65885946-160e4680-e3b9-11e9-967e-981ece5d5cf3.png)
+
+>List of Users:
+
+![Screenshot_20190930-192953](https://user-images.githubusercontent.com/17490608/65885948-160e4680-e3b9-11e9-80de-53e45c9ecb30.png)
 
 
  
