@@ -1,4 +1,4 @@
-# fluttercomponent_demo
+# FlutterWidgetDemo
 
 A new Flutter application.
 
