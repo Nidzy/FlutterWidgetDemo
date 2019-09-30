@@ -25,7 +25,7 @@
 
 11 Svg usage.
 
-12 Bottom App Bar usage.
+12 BottomNavigationBarItem usage.
 
 >Login Screen:
 
