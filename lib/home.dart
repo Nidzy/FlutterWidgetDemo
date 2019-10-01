@@ -60,7 +60,7 @@ class _PickImageDemoState extends State<PickImage> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-            appBar: AppBar(title: Text("Image Pick Demo")),
+            appBar: AppBar(title: Text("Home")),
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

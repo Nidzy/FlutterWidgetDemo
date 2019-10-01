@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttercomponent_demo/database/database_presenter.dart';
@@ -26,13 +27,14 @@ class UsersList extends StatelessWidget {
           return Card(
             elevation: 5.0,
             child: Container(
+              padding: EdgeInsets.all(5.0),
               child: Center(
                 child: Row(
                   children: <Widget>[
                     CircleAvatar(
                       radius: 30.0,
                       child: Text(getShortName(users[index])),
-                      backgroundColor: const Color(0xFF20283e),
+                      backgroundColor: Colors.black,
                     ),
                     Expanded(
                       child: Padding(
@@ -49,10 +51,10 @@ class UsersList extends StatelessWidget {
                                   TextStyle(fontSize: 20.0, color: Colors.blue),
                             ),
                             Text(
-                              "DATE: " + users[index].dob,
+                              "Address: " + users[index].address,
                               // set some style to text
-                              style: TextStyle(
-                                  fontSize: 20.0, color: Colors.pinkAccent),
+                              style:
+                                  TextStyle(fontSize: 20.0, color: Colors.blue),
                             ),
                           ],
                         ),
@@ -67,11 +69,43 @@ class UsersList extends StatelessWidget {
                           onPressed: () => edit(users[index], context),
                         ),
                         IconButton(
-                          icon: const Icon(Icons.delete),
-                          color: Colors.pinkAccent,
-                          onPressed: () =>
-                              dataBasePresenter.delete(users[index]),
-                        )
+                            icon: const Icon(Icons.delete),
+                            color: Colors.pinkAccent,
+                            onPressed: () => showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                child: CupertinoAlertDialog(
+                                  content: new Text(
+                                    "Are you sure you want to delete?",
+                                    style: new TextStyle(fontSize: 16.0),
+                                  ),
+                                  actions: <Widget>[
+                                    //login button submit click
+                                    FlatButton(
+                                        onPressed: () {
+                                          dataBasePresenter
+                                              .delete(users[index]);
+                                          //dissmiss confirmation dialog
+                                          Navigator.of(context,
+                                                  rootNavigator: true)
+                                              .pop("Discard");
+                                          /*  Navigator.pop(context, true);
+                                  _clearPreference(context);*/
+                                        },
+                                        child: Text("Yes")),
+                                    FlatButton(
+                                      onPressed: () {
+                                        //ok button click
+                                        //discard the alert dialog.
+//                                Navigator.pop(context, 'Discard');
+                                        Navigator.of(context,
+                                                rootNavigator: true)
+                                            .pop("Discard");
+                                      },
+                                      child: Text("No"),
+                                    )
+                                  ],
+                                )))
                       ],
                     )
                   ],
@@ -103,7 +137,6 @@ class UsersList extends StatelessWidget {
       shortName = user.firstName.substring(0, 1) + ".";
       print(user.firstName);
       print(user.lastName);
-
     }
 
     if (!user.lastName.isEmpty) {

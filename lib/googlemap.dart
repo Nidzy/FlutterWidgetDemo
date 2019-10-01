@@ -8,6 +8,7 @@ class googleMap extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Google Map",
+      debugShowCheckedModeBanner: false,
       home: MapScreen(),
     );
   }

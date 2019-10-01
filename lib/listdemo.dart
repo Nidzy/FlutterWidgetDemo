@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() => runApp(ListDemo());
 
@@ -65,6 +66,14 @@ class _ListPageState extends State<ListDemo> {
       'Vatican City'
     ];
 
+    final String assetName = 'assets/europeanunion.svg';
+    final Widget europeanunion = SvgPicture.asset(
+      assetName,
+      semanticsLabel: 'EuropeanUnion',
+      height: 100,
+      width: 100,
+    );
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -108,11 +117,18 @@ class _ListPageState extends State<ListDemo> {
                                           bottom: 0)),
                                   Align(
                                       alignment: Alignment.center,
-                                      child: Image.asset(
-                                        'assets/food.jpg',
-                                        width: 100,
+                                      /*child: Image.asset(
+                                //'assets/food.jpg',
+                                'assets/europeanunion',
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              )),*/
+                                      child: SvgPicture.asset(
+                                        assetName,
+                                        semanticsLabel: 'EuropeanUnion',
                                         height: 100,
-                                        fit: BoxFit.cover,
+                                        width: 100,
                                       )),
                                   Padding(
                                       padding: EdgeInsets.only(

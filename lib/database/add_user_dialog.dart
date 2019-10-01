@@ -15,126 +15,131 @@ class AddUserDialog {
 
   final etFirstname = TextEditingController();
   final etLastname = TextEditingController();
-  final etDob = TextEditingController();
+  final etAddress = TextEditingController();
   User user;
 
-  Widget buildAboutDialog(BuildContext context, _myHomePageState, bool isEdit,
-      User user) {
-    /*final FocusNode _firstNameFocus = FocusNode();
-    final FocusNode _lastNameFocus = FocusNode();
-    final FocusNode _dobFocus = FocusNode();*/
-
-    String _firstName, _lastName, _dob;
+  Widget buildAboutDialog(
+      BuildContext context, _myHomePageState, bool isEdit, User user) {
+    String _firstName, _lastName, _address;
 
     if (user != null) {
       this.user = user;
       etFirstname.text = user.firstName;
       etLastname.text = user.lastName;
-      etDob.text = user.dob;
+      etAddress.text = user.address;
     }
 
     final GlobalKey<FormState> _addUserKey = GlobalKey<FormState>();
 
     return AlertDialog(
-      title: Text(isEdit ? 'Edit' : 'Add new User'),
+      title: Text(isEdit ? 'Update User' : 'Add User'),
       content: SingleChildScrollView(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
-            // it will work as a gravity.
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              TextFormField(
-                  decoration: InputDecoration(labelText: "FirstName"),
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  controller: etFirstname,
-                  /* focusNode: _firstNameFocus,
+        mainAxisSize: MainAxisSize.min,
+        // it will work as a gravity.
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          TextFormField(
+              decoration: InputDecoration(labelText: "FirstName"),
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              controller: etFirstname,
+              /* focusNode: _firstNameFocus,
               onFieldSubmitted: (term) {
                 _fieldFocusChange(context, _firstNameFocus, _lastNameFocus);
               },*/
 
-                  //textDirection: TextDirection.rtl,
-                  validator: (name) {
-                    if (name.isEmpty) {
-                      return 'Please enter firstname';
-                    }
-                    return null;
-                  },
-                  onSaved: (String firstName) {
-                    _firstName = firstName;
-                  }),
-              TextFormField(
-                  decoration: InputDecoration(labelText: "LastName "),
-                  keyboardType: TextInputType.text,
-                  //focusNode: _lastNameFocus,
-                  controller: etLastname,
-                  autofocus: false,
-                  textInputAction: TextInputAction.next,
+              //textDirection: TextDirection.rtl,
+              validator: (name) {
+                if (name.isEmpty) {
+                  return 'Please enter firstname';
+                }
+                return null;
+              },
+              onSaved: (String firstName) {
+                _firstName = firstName;
+              }),
+          TextFormField(
+              decoration: InputDecoration(labelText: "LastName "),
+              keyboardType: TextInputType.text,
+              //focusNode: _lastNameFocus,
+              controller: etLastname,
+              autofocus: false,
+              textInputAction: TextInputAction.next,
 
-                  //for hiding the 1/10 lable from the form field.
-                  buildCounter: (BuildContext context,
+              //for hiding the 1/10 lable from the form field.
+              buildCounter: (BuildContext context,
                       {int currentLength, int maxLength, bool isFocused}) =>
                   null,
-                  /* onFieldSubmitted: (term) {
-                _fieldFocusChange(context, _lastNameFocus, _dobFocus);
-              },*/
-                  validator: (lastName) {
-                    if (lastName.isEmpty) {
-                      return 'Please enter lastname ';
-                    }
-                    return null;
-                  },
-                  onSaved: (String lastName) {
-                    _lastName = lastName;
-                  }
+              validator: (lastName) {
+                if (lastName.isEmpty) {
+                  return 'Please enter lastname ';
+                }
+                return null;
+              },
+              onSaved: (String lastName) {
+                _lastName = lastName;
+              }
 
-                /*validator: (number) {
+              /*validator: (number) {
               if (number.isEmpty) {
                 return 'Please enter Number';
               }
               return null;
             },*/
               ),
-              TextFormField(
-                  decoration: InputDecoration(labelText: "DD-MM-YYYY"),
-                  keyboardType: TextInputType.text,
-//              focusNode: _dobFocus,
-                  autofocus: false,
-                  controller: etDob,
-                  textInputAction: TextInputAction.done,
-                  validator: (address) {
-                    if (address.isEmpty) {
-                      return 'Please enter dob';
-                    }
-                    return null;
-                  },
-                  onSaved: (String dob) {
-                    _dob = dob;
-                  }),
-
-//            getTextField("Enter first name", etFirstname, _firsNnameFocus),
-//            getTextField("Enter last name", etLastname, _lastNameFocus),
-//            getTextField("DD-MM-YYYY", etDob, _dobFocus),
-              GestureDetector(
-                onTap: () {
+          TextFormField(
+              decoration: InputDecoration(labelText: "Address"),
+              keyboardType: TextInputType.text,
+              autofocus: false,
+              controller: etAddress,
+              textInputAction: TextInputAction.done,
+              validator: (address) {
+                if (address.isEmpty) {
+                  return 'Please enter Address';
+                }
+                return null;
+              },
+              onSaved: (String address) {
+                _address = address;
+              }),
+          Container(
+              padding: EdgeInsets.all(5.0),
+              alignment: Alignment.center,
+              child: RaisedButton(
+                color: Colors.pinkAccent,
+                onPressed: () {
                   addRecord(isEdit);
                   _myHomePageState.displayRecord();
                   Navigator.of(context).pop();
                 },
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                  child: getAppBorderButton(isEdit ? "Edit" : "Add",
-                      EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0)),
+                child: Text(
+                  isEdit ? "Update" : "Add",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
                 ),
-              ),
-            ],
-          )),
+              )),
+
+          /*GestureDetector(
+            onTap: () {
+              addRecord(isEdit);
+              _myHomePageState.displayRecord();
+              Navigator.of(context).pop();
+            },
+            child: Container(
+              margin: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+              child: getAppBorderButton(isEdit ? "Edit" : "Add",
+                  EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0)),
+            ),
+          ),*/
+        ],
+      )),
     );
   }
 
   //focus from one field to other field
-  _fieldFocusChange(BuildContext context, FocusNode currentFocus,
-      FocusNode nextFocus) {
+  _fieldFocusChange(
+      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
   }
@@ -180,7 +185,7 @@ class AddUserDialog {
   //add/ edit user details
   Future addRecord(bool isEdit) async {
     var db = DatabaseHelper();
-    var user = User(etFirstname.text, etLastname.text, etDob.text);
+    var user = User(etFirstname.text, etLastname.text, etAddress.text);
     if (isEdit) {
       user.setUserId(this.user.id);
       await db.update(user);

@@ -1,4 +1,7 @@
+import 'dart:ui' as prefix0;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:fluttercomponent_demo/api/post_services.dart';
 import 'package:fluttercomponent_demo/model/post_model.dart';
 
@@ -42,7 +45,9 @@ class NetworkCallScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text("Network Call"),
+        ),
         body: FutureBuilder<Post>(
             future: getPost(),
             builder: (context, snapshot) {
@@ -52,10 +57,19 @@ class NetworkCallScreen extends StatelessWidget {
                   return Text("Error");
                 }
 
-                return Text(
-                    'Title from response JSON : ${snapshot.data.title}');
+                return Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: EdgeInsets.all(5.0),
+                    child: Column(children: <Widget>[
+                      Text("Title from response JSON : ",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text(snapshot.data.title)
+                    ]));
               } else
-                return CircularProgressIndicator();
+                return Container(
+                    padding: EdgeInsets.all(50.0),
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator());
             }));
   }
 }

@@ -39,7 +39,7 @@ class DatabaseHelper {
   void _onCreate(Database db, int version) async {
     //when creating the db create the table
     await db.execute(
-        "CREATE TABLE User(id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT, dob TEXT)");
+        "CREATE TABLE User(id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT, address TEXT)");
   }
 
 //save user
@@ -58,8 +58,8 @@ class DatabaseHelper {
 
     //list of user
     for (int i = 0; i < list.length; i++) {
-      var user =
-          new User(list[i]["firstname"], list[i]["lastname"], list[i]["dob"]);
+      var user = new User(
+          list[i]["firstname"], list[i]["lastname"], list[i]["address"]);
       user.setUserId(list[i]["id"]);
       users.add(user);
     }
